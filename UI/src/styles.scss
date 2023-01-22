@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+:root {
+  --standardFont: "Lexend", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--standardFont);
+}
