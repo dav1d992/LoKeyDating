@@ -1,0 +1,52 @@
+<div class="card">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <img
+        src="https://primefaces.org/cdn/primeng/images/primeng.svg"
+        height="40"
+        class="mr-2"
+      />
+    </ng-template>
+    <ng-template pTemplate="end">
+      <form
+        *ngIf="!loggedIn"
+        #loginForm="ngForm"
+        class="d-flex"
+        (ngSubmit)="login()"
+        autocomplete="off"
+      >
+        <input
+          type="text"
+          pInputText
+          name="username"
+          [(ngModel)]="model.username"
+          placeholder="Username"
+          class="w-full form-control"
+        />
+        <input
+          type="password"
+          pInputText
+          name="password"
+          [(ngModel)]="model.password"
+          placeholder="Password"
+          class="w-full form-control"
+        />
+        <button pButton type="button" label="Login" type="submit"></button>
+      </form>
+      <button
+        pButton
+        *ngIf="loggedIn"
+        type="button"
+        label="Logout"
+        (click)="logout()"
+      ></button>
+
+      <p-splitButton
+        *ngIf="loggedIn"
+        label="{{ model.username }}"
+        icon="pi pi-user"
+        [model]="items"
+      ></p-splitButton>
+    </ng-template>
+  </p-menubar>
+</div>
