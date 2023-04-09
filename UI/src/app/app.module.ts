@@ -12,9 +12,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { CarouselModule } from 'primeng/carousel';
+import { HomeComponent } from './pages/home/home.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    RegisterUserComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +35,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     InputTextModule,
     DropdownModule,
     SplitButtonModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

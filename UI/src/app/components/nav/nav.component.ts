@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, SelectItem } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
 import { AccountService } from 'src/app/services/account.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,25 +9,40 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
-  public items: MenuItem[] = [];
+  public navOptions: MenuItem[] = [];
+  public userOptions: MenuItem[] = [];
   public model: any = {};
-  public loggedIn: boolean = false;
+  public loggedIn = false;
+  public darkMode = false;
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+    private themeService: ThemeService
+  ) {}
 
   ngOnInit() {
-    this.generateMenuItems();
+    this.darkMode = this.themeService.isDarkMode();
+
+    this.accountService.currentUser$.subscribe((user) => {
+      if (user === null) {
+        this.loggedIn = false;
+      } else {
+        this.loggedIn = true;
+      }
+    });
+    this.setNavOptions();
+    this.setUserOptions();
   }
 
-  generateMenuItems() {
-    this.items = [
+  private setNavOptions() {
+    this.navOptions = [
       {
         label: 'Home',
         icon: 'pi pi-fw pi-home',
       },
     ];
     if (this.loggedIn) {
-      this.items.splice(
+      this.navOptions.splice(
         1,
         0,
         {
@@ -45,8 +61,20 @@ export class NavComponent implements OnInit {
     }
   }
 
-  onLoggedInChange() {
-    this.generateMenuItems();
+  private setUserOptions() {
+    this.userOptions = [
+      {
+        label: 'Edit profile',
+        icon: 'pi pi-fw pi-user-edit',
+      },
+      {
+        label: 'Sign out',
+        icon: 'pi pi-fw pi-sign-out',
+        command: () => {
+          this.signOut();
+        },
+      },
+    ];
   }
 
   public login() {
@@ -54,31 +82,21 @@ export class NavComponent implements OnInit {
       next: (response) => {
         console.log(response);
         this.loggedIn = true;
-        this.generateMenuItems();
+        this.setNavOptions();
       },
       error: (error) => console.log(error),
     });
   }
 
-  public logout() {
+  public signOut() {
+    this.accountService.signOut();
     this.loggedIn = false;
-    this.generateMenuItems();
+    this.setNavOptions();
   }
 
-  public dropdownVisible = false;
-  public selectedOption?: SelectItem;
-
-  public dropdownOptions: SelectItem[] = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
-  ];
-
-  toggleDropdown(): void {
-    this.dropdownVisible = !this.dropdownVisible;
-  }
-
-  onOptionChange(event: any): void {
-    console.log('Selected option:', event.value);
+  public toggleTheme() {
+    this.darkMode = !this.darkMode;
+    const lightOrDark = this.darkMode ? 'dark' : 'light';
+    this.themeService.setTheme(`bootstrap4-${lightOrDark}-blue`);
   }
 }

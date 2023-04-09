@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles.scss",
               {
 								"input": "src/assets/themes/theme-bootstrap4-light-blue.scss",
 								"bundleName": "bootstrap4-light-blue",
@@ -39,8 +40,7 @@
 								"input": "src/assets/themes/theme-bootstrap4-dark-blue.scss",
 								"bundleName": "bootstrap4-dark-blue",
 								"inject": false
-							},
-              "src/styles.scss"
+							}
             ],
             "scripts": []
           },

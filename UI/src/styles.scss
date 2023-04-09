@@ -14,3 +14,13 @@ body {
   margin: 0;
   font-family: var(--standardFont);
 }
+
+.h-stack {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.gap {
+  gap: 1dvh;
+}
