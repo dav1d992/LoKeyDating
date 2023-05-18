@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { CarouselModule } from 'primeng/carousel';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -36,8 +39,12 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     DropdownModule,
     SplitButtonModule,
     CarouselModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    MessageService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

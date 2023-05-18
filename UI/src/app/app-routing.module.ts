@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { TestErrorComponent } from './components/test-error/test-error.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    component: HomeComponent,
+  },
+  {
+    path: 'errors',
+    component: TestErrorComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
     pathMatch: 'full',
   },
 ];

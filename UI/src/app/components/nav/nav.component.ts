@@ -14,6 +14,7 @@ export class NavComponent implements OnInit {
   public model: any = {};
   public loggedIn = false;
   public darkMode = false;
+  public userName: string = '';
 
   constructor(
     private accountService: AccountService,
@@ -27,6 +28,8 @@ export class NavComponent implements OnInit {
       if (user === null) {
         this.loggedIn = false;
       } else {
+        console.log('user', user);
+        this.userName = user.userName;
         this.loggedIn = true;
       }
     });
@@ -39,9 +42,10 @@ export class NavComponent implements OnInit {
       {
         label: 'Home',
         icon: 'pi pi-fw pi-home',
+        routerLink: ['/'],
       },
     ];
-    if (this.loggedIn) {
+    if (this.accountService.currentUser$) {
       this.navOptions.splice(
         1,
         0,

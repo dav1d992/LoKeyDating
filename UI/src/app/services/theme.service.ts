@@ -14,6 +14,7 @@ export class ThemeService {
     if (localStorage.getItem('theme')) {
       this.theme = localStorage.getItem('theme');
       this.themeLink.href = localStorage.getItem('theme') + '.css';
+      this.updateCssVariables();
     } else this.setTheme('bootstrap4-light-blue');
   }
 
@@ -24,6 +25,7 @@ export class ThemeService {
     if (this.themeLink) {
       this.themeLink.href = this.theme + '.css';
     }
+    this.updateCssVariables();
   }
 
   public isDarkMode(): boolean {
@@ -36,5 +38,19 @@ export class ThemeService {
     }
 
     return false;
+  }
+
+  private updateCssVariables() {
+    if (this.isDarkMode()) {
+      this.document.documentElement.style.setProperty(
+        '--background-color',
+        'rgba(52, 62, 77)'
+      );
+    } else {
+      this.document.documentElement.style.setProperty(
+        '--background-color',
+        'rgba(239, 239, 239)'
+      );
+    }
   }
 }
