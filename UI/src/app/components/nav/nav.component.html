@@ -34,7 +34,7 @@
 
       <p-splitButton
         *ngIf="currentUser"
-        label="{{ currentUser.userName }}"
+        label="{{ currentUser.userName | titlecase }}"
         icon="pi pi-user"
         class="p-button-rounded"
         [model]="userOptions"

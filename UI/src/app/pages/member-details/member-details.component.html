@@ -1,2 +1,21 @@
-<p>member-details works!</p>
+<p-card
+  header="Advanced Card"
+  subheader="Card Subheader"
+  [style]="{ width: '30dvh' }"
+>
+  <ng-template pTemplate="header">
+    <img
+      src="{{ member?.photoUrl || './assets/user.png' }}"
+      alt="{{ member?.knownAs }}"
+      class="user-profile-picture"
+    />
+  </ng-template>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+    consequuntur error repudiandae numquam deserunt quisquam repellat libero
+    asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
+    neque quas!
+  </p>
+</p-card>
+
 <pre>{{ member | json }}</pre>

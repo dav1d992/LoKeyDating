@@ -1,23 +1,28 @@
-::ng-deep .p-card {
-  background: var(--background-color);
-  transition: all 0.3s ease-in-out;
+:host {
+  ::ng-deep {
+    .p-card {
+      transition: all 0.3s ease-in-out;
+      background: var(--background-color);
 
-  &:hover {
-    transform: scale(1.01);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      &:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+          0 6px 6px rgba(0, 0, 0, 0.23);
+      }
+
+      .p-card-body {
+        padding: 0;
+      }
+
+      .p-card-content {
+        padding: 0;
+      }
+
+      .p-avatar {
+        font-weight: bolder;
+      }
+    }
   }
-}
-
-::ng-deep .p-card .p-card-body {
-  padding: 0;
-}
-
-::ng-deep .p-card .p-card-content {
-  padding: 0;
-}
-
-::ng-deep .p-card .p-avatar {
-  font-weight: bolder;
 }
 
 .image-container {

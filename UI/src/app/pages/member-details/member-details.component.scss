@@ -1,0 +1,15 @@
+:host {
+  ::ng-deep {
+    .p-card {
+      width: 30dvh;
+      background: var(--background-color);
+    }
+  }
+}
+
+.user-profile-picture {
+  margin: 1dvh;
+  width: 28dvh;
+  border-radius: 5%;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
