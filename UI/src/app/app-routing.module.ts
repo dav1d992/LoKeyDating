@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { TestErrorComponent } from './components/test-error/test-error.component';
 import { MembersComponent } from '@pages/members/members.component';
 import { AuthGuard } from './guards/auth.guard';
+import { MemberDetailsComponent } from '@pages/member-details/member-details.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'members', component: MembersComponent },
-      { path: 'members/:username', component: MembersComponent },
+      { path: 'members/:username', component: MemberDetailsComponent },
       { path: 'messages', component: MembersComponent },
     ],
   },
@@ -32,13 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      enableTracing: false,
-      preloadingStrategy: PreloadAllModules,
-      initialNavigation: 'enabledBlocking',
-    }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

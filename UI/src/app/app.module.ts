@@ -23,6 +23,7 @@ import { MessageService } from 'primeng/api';
 import { MembersComponent } from '@pages/members/members.component';
 import { MemberCardComponent } from '@components/member-card/member-card.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MemberDetailsComponent } from '@pages/member-details/member-details.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     RegisterUserComponent,
     MembersComponent,
     MemberCardComponent,
+    MemberDetailsComponent,
   ],
   imports: [
     BrowserModule,

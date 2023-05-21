@@ -1,4 +1,8 @@
-<p-card [style]="{ width: '20dvh' }" *ngIf="member">
+<p-card
+  [style]="{ width: '20dvh' }"
+  *ngIf="member"
+  routerLink="/members/{{ member.userName }}"
+>
   <div class="image-container">
     <img
       src="{{ member.photoUrl || './assets/user.png' }}"

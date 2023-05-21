@@ -55,7 +55,6 @@ export class TestErrorComponent implements OnInit {
     this.http.post(this.baseUrl + 'accounts/register', {}).subscribe({
       next: (response) => console.log(response),
       error: (error) => {
-        console.log('hahaha', error);
         this.validationErrors = error;
       },
     });
