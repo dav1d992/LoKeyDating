@@ -1,8 +1,8 @@
 <p-menubar [model]="navOptions">
   <ng-template pTemplate="end">
-    <div class="h-stack gap">
+    <div class="h-stack-center gap">
       <form
-        *ngIf="!loggedIn"
+        *ngIf="!currentUser"
         #loginForm="ngForm"
         (ngSubmit)="login()"
         autocomplete="off"
@@ -33,8 +33,8 @@
       </form>
 
       <p-splitButton
-        *ngIf="loggedIn"
-        label="{{ userName }}"
+        *ngIf="currentUser"
+        label="{{ currentUser.userName }}"
         icon="pi pi-user"
         class="p-button-rounded"
         [model]="userOptions"

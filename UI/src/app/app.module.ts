@@ -8,16 +8,21 @@ import { ButtonModule } from 'primeng/button';
 import { NavComponent } from './components/nav/nav.component';
 import { MenubarModule } from 'primeng/menubar';
 import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { CarouselModule } from 'primeng/carousel';
+import { AvatarModule } from 'primeng/avatar';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { MembersComponent } from '@pages/members/members.component';
+import { MemberCardComponent } from '@components/member-card/member-card.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,8 @@ import { MessageService } from 'primeng/api';
     NavComponent,
     HomeComponent,
     RegisterUserComponent,
+    MembersComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +47,12 @@ import { MessageService } from 'primeng/api';
     SplitButtonModule,
     CarouselModule,
     ToastModule,
+    AvatarModule,
+    DividerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     MessageService,
   ],
   bootstrap: [AppComponent],

@@ -15,12 +15,38 @@ body {
   font-family: var(--standardFont);
 }
 
-.h-stack {
+.h-stack-center {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.h-stack-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.h-stack-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
 }
 
 .gap {
   gap: 1dvh;
+}
+
+.gap-x2 {
+  gap: 2dvh;
+}
+
+.badge {
+  background-color: #f0f0f0;
+  font-style: italic;
+}
+
+.w-100 {
+  width: 100%;
 }

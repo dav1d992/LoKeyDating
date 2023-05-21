@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '@models/user';
 import { MenuItem } from 'primeng/api';
 import { AccountService } from 'src/app/services/account.service';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -12,25 +13,29 @@ export class NavComponent implements OnInit {
   public navOptions: MenuItem[] = [];
   public userOptions: MenuItem[] = [];
   public model: any = {};
-  public loggedIn = false;
   public darkMode = false;
-  public userName: string = '';
+  private user?: User;
 
   constructor(
     private accountService: AccountService,
     private themeService: ThemeService
   ) {}
 
+  get currentUser(): User | undefined {
+    return this.user ?? undefined;
+  }
+  set currentUser(value: User | undefined) {
+    this.user = value;
+    this.setNavOptions();
+  }
+
   ngOnInit() {
     this.darkMode = this.themeService.isDarkMode();
 
     this.accountService.currentUser$.subscribe((user) => {
-      if (user === null) {
-        this.loggedIn = false;
-      } else {
-        console.log('user', user);
-        this.userName = user.userName;
-        this.loggedIn = true;
+      if (user === null) this.user = undefined;
+      else {
+        this.currentUser = user;
       }
     });
     this.setNavOptions();
@@ -45,17 +50,18 @@ export class NavComponent implements OnInit {
         routerLink: ['/'],
       },
     ];
-    if (this.accountService.currentUser$) {
+    if (this.currentUser) {
       this.navOptions.splice(
         1,
         0,
         {
-          label: 'Matches',
-          icon: 'pi pi-fw pi-heart-fill',
+          label: 'Members',
+          icon: 'pi pi-fw pi-users',
+          routerLink: ['/members'],
         },
         {
-          label: 'Lists',
-          icon: 'pi pi-fw pi-list',
+          label: 'Matches',
+          icon: 'pi pi-fw pi-heart-fill',
         },
         {
           label: 'Messages',
@@ -84,8 +90,6 @@ export class NavComponent implements OnInit {
   public login() {
     this.accountService.login(this.model).subscribe({
       next: (response) => {
-        console.log(response);
-        this.loggedIn = true;
         this.setNavOptions();
       },
       error: (error) => console.log(error),
@@ -94,7 +98,6 @@ export class NavComponent implements OnInit {
 
   public signOut() {
     this.accountService.signOut();
-    this.loggedIn = false;
     this.setNavOptions();
   }
 
