@@ -76,6 +76,7 @@ export class NavComponent implements OnInit {
       {
         label: 'Edit profile',
         icon: 'pi pi-fw pi-user-edit',
+        routerLink: ['/profile'],
       },
       {
         label: 'Sign out',

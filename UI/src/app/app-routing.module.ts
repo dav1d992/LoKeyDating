@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { TestErrorComponent } from './components/test-error/test-error.component';
 import { MembersComponent } from '@pages/members/members.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MemberDetailsComponent } from '@pages/member-details/member-details.component';
+import { ProfileComponent } from '@pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       { path: 'members', component: MembersComponent },
       { path: 'members/:username', component: MemberDetailsComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'messages', component: MembersComponent },
     ],
   },

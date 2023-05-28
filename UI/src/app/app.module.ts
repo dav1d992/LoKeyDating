@@ -27,7 +27,8 @@ import { MemberDetailsComponent } from '@pages/member-details/member-details.com
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { TabViewModule } from 'primeng/tabview';
 import { GalleriaModule } from 'primeng/galleria';
-
+import { ProfileComponent } from '@pages/profile/profile.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { GalleriaModule } from 'primeng/galleria';
     MembersComponent,
     MemberCardComponent,
     MemberDetailsComponent,
+    ProfileComponent,
     TimeAgoPipe,
   ],
   imports: [
@@ -57,6 +59,7 @@ import { GalleriaModule } from 'primeng/galleria';
     DividerModule,
     TabViewModule,
     GalleriaModule,
+    InputTextareaModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

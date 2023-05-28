@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
         else {
           this.toastService.showToast(<ToastProps>{
             title: 'Unauthorized',
-            description: 'You shall not pass!',
+            description: 'You shall not pass!!!!',
             lifetime: 10000,
             severity: SEVERITY_LEVEL.Error,
           });

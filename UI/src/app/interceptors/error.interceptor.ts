@@ -49,7 +49,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 401:
               this.toastService.showToast(<ToastProps>{
                 title: 'Unauthorized',
-                description: 'You shall not pass!',
+                description: 'You shall not pass! Hehe',
                 lifetime: 10000,
                 severity: SEVERITY_LEVEL.Error,
               });
