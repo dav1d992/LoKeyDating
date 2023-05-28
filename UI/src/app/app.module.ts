@@ -24,6 +24,9 @@ import { MembersComponent } from '@pages/members/members.component';
 import { MemberCardComponent } from '@components/member-card/member-card.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MemberDetailsComponent } from '@pages/member-details/member-details.component';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { TabViewModule } from 'primeng/tabview';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { MemberDetailsComponent } from '@pages/member-details/member-details.com
     MembersComponent,
     MemberCardComponent,
     MemberDetailsComponent,
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ import { MemberDetailsComponent } from '@pages/member-details/member-details.com
     ToastModule,
     AvatarModule,
     DividerModule,
+    TabViewModule,
+    GalleriaModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

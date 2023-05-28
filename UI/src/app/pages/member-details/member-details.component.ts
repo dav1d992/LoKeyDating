@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '@models/member';
+import { Photo } from '@models/photo';
 import { MembersService } from '@services/members.service';
 
 @Component({
@@ -10,6 +11,21 @@ import { MembersService } from '@services/members.service';
 })
 export class MemberDetailsComponent implements OnInit {
   member: Member | undefined;
+  responsiveOptions = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
+  images: Photo[] = [];
 
   constructor(
     private memberService: MembersService,
@@ -24,11 +40,7 @@ export class MemberDetailsComponent implements OnInit {
     if (!this.member) return [];
     const imageUrls = [];
     for (const photo of this.member.photos) {
-      imageUrls.push({
-        small: photo.url,
-        medium: photo.url,
-        big: photo.url,
-      });
+      imageUrls.push(photo);
     }
     return imageUrls;
   }
@@ -39,6 +51,7 @@ export class MemberDetailsComponent implements OnInit {
     this.memberService.getMember(username).subscribe({
       next: (member) => {
         this.member = member;
+        this.images = this.getImages();
       },
     });
   }
